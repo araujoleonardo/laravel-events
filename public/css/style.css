@@ -1,0 +1,129 @@
+* {
+    font-family: Roboto;
+}
+
+body {
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+header {
+    border-bottom: 1px solid #CCC;
+    
+}
+
+.msg {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+.row {
+    margin: 0;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.btn-primary {
+    background-color: #369AC2;
+    border-color: cadetblue;
+}
+
+.btn-primary:hover {
+    background-color: #45C3F5;
+    border-color: cadetblue;
+}
+
+/*Navbar*/
+#navbar img {
+    width: 60px;
+}
+
+#navbar {
+    justify-content: space-between;
+
+}
+
+#navbar a {
+    font-size: 1.0em;
+    color: #757575;
+}
+
+#navbar a:hover {
+    color: #45C3F5;
+}
+
+/*Search conatiner*/
+#search-container {
+    background-image: url("../assets/img/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    padding: 100px;
+    text-align: center;
+}
+
+#search-container h1 {
+    color: #45C3F5;
+    text-shadow: 0.1em 0.1em 0.2em #000;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 3.0em;
+}
+
+#search-container form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/*Events list*/
+#events-container {
+    padding: 50px;
+}
+
+#events-container h2 {
+    margin-bottom: 10px;
+}
+
+#events-container .subtitle {
+    color: #369AC2;
+    margin-bottom: 30px;
+}
+  
+.card .card-date {
+    font-size: 1.0em;
+    color: #CCC;
+}
+  
+.card-participants {
+    font-size: 1.0em;
+    color: #757575;
+}
+
+/*Page create*/
+#event-create-container {
+    padding: 30px
+}
+  
+/* footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #FFF;
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+  
+footer p {
+    margin-bottom: 0;
+    font-size: small;
+}
