@@ -15,6 +15,9 @@
         <!-- Fontes do Google -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
+        <!-- Links de icones -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
+
     </head>
     <body>
         <header>

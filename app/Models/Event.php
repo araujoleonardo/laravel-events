@@ -14,5 +14,6 @@ class Event extends Model
         'city',
         'private',
         'description',
+        'image',
     ];
 }

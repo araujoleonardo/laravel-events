@@ -96,6 +96,20 @@ header {
     color: #369AC2;
     margin-bottom: 30px;
 }
+
+#events-container .card {
+    flex: 1 1 24%;
+    max-width: 25%;
+    border-radius: 10px;
+    padding: 0;
+    margin: .5%;
+}
+  
+#events-container img {
+    max-height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
   
 .card .card-date {
     font-size: 1.0em;
@@ -110,6 +124,43 @@ header {
 /*Page create*/
 #event-create-container {
     padding: 30px
+}
+
+/* Event page */
+#image-container,
+#info-container {
+    margin-top: 30px;
+}
+
+#image-container img {
+    border-radius: 10px;
+}
+
+#info-container h1 {
+    font-size: 36px;
+    font-weight: 900;
+}
+
+#info-container p {
+    margin: 10px;
+    font-size: 14px;
+    display: flex;
+}
+
+#info-container h3,
+#description-container h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#info-container #event-submit {
+    margin: 20px 0;
+}
+
+.icon {
+    color: #369AC2;
+    font-size: 25px;
+    margin-right: 5px;
 }
   
 /* footer */
