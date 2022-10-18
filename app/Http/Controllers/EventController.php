@@ -14,9 +14,17 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::get();
+        $search = request('search');
 
-        return view('welcome', compact('events'));
+        if($search) {
+            $events = Event::where([
+                ['title', 'like', '%'.$search.'%']
+            ])->get();
+        } else {
+            $events = Event::get();
+        }
+        
+        return view('welcome', compact('events'), compact('search'));
     }
 
     /**
@@ -40,9 +48,11 @@ class EventController extends Controller
         $event = new Event;
 
         $event->title = $request->title;
+        $event->date = $request->date;
         $event->city = $request->city;
         $event->private = $request->private;
         $event->description = $request->description;
+        $event->items = $request->items;
 
         //Image upload
         if($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -56,6 +66,9 @@ class EventController extends Controller
 
             $event->image = $imageName;
         }
+
+        $user = auth()->user();
+        $event->user_id = $user->id;
 
         $event->save();
 

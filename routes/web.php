@@ -23,6 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //ROTAS PARA CONTROLLER DE EVENTOS
 //Route::resource('/events', EventController::class)->middleware('auth');
 Route::get('/', [EventController::class, 'index'])->name('events.index');
-Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('auth');
 Route::post('/events', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
