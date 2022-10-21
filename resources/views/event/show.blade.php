@@ -14,7 +14,7 @@
                 <p class="event-city"><span class="material-icons-round icon">location_on</span> {{ $event->city }}</p>
                 <p class="event-city"><span class="material-icons-round icon">calendar_month</span> {{ date('d/m/Y', strtotime($event->date)) }}</p>
                 <p class="events-participants"><span class="material-icons-round icon">groups</span> X Participantes</p>
-                <p class="event-owner"><span class="material-icons-round icon">star</span> Dono do Evento</p>
+                <p class="event-owner"><span class="material-icons-round icon">star</span> {{ $eventOwner['name'] }}</p>
                 <a href="#" class="btn btn-primary" id="event-submit">Confirmar Presença</a>
                 <h3>O evento conta com:</h3>
                 <ul id="items-list">

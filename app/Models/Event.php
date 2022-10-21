@@ -25,6 +25,9 @@ class Event extends Model
         'date'
     ];
 
+    //salvar alterações do update
+    protected $guarded = [];
+
     public function user() {
         return $this->belongsTo('App\Models\User');
     }

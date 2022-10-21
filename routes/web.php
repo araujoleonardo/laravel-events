@@ -15,14 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
 //ROTAS PARA CONTROLLER DE EVENTOS
 //Route::resource('/events', EventController::class)->middleware('auth');
 Route::get('/', [EventController::class, 'index'])->name('events.index');
+Route::get('/dashboard', [EventController::class, 'dashboard'])->name('events.dashboard')->middleware('auth');
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('auth');
 Route::post('/events', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::get('/events/edit/{id}', [EventController::class, 'edit'])->name('events.edit')->middleware('auth');
+Route::put('/events/update/{id}', [EventController::class, 'update'])->name('events.update')->middleware('auth');

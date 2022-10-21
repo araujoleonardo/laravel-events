@@ -41,7 +41,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a href="{{ route('dashboard') }}" class="nav-link dropdown-item">Meus eventos</a>
+                                    <a href="{{ route('events.dashboard') }}" class="nav-link dropdown-item">Meus eventos</a>
                                     <div class="dropdown-divider"></div>
                                     <form action="/logout" method="POST" class="">
                                         @csrf

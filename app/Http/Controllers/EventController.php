@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -89,7 +90,10 @@ class EventController extends Controller
             return redirect()->route('events.index');
         }
 
-        return view('event.show', compact('event'));
+        //Pegando usuário criador do evento
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
+
+        return view('event.show', compact('event'), compact('eventOwner'));
     }
 
     /**
@@ -100,7 +104,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+
+        return view('event.edit', compact('event'));
     }
 
     /**
@@ -110,9 +116,31 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->all();
+
+
+        // Image Upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('img/events'), $imageName);
+
+            $data['image'] = $imageName;
+
+        }
+
+        $data['items'] = $request->items;
+
+        Event::findOrFail($request->id)->update($data);
+
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
     }
 
     /**
@@ -123,6 +151,22 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event::find($id);
+
+        $event->delete();
+
+        return redirect()->route('events.dashboard')->with('msg', 'Evento excluído com sucesso!');
+    }
+
+
+    public function dashboard()
+    {
+        //Pega o usuário logado
+        $user = auth()->user();
+
+        //Pega eventos do usuário logado
+        $events = $user->events;
+
+        return view('event.dashboard', compact('events'));
     }
 }
