@@ -23,7 +23,7 @@
                         <tr>
                             <td scope="row">{{ $loop->index + 1 }}</td>
                             <td><a href="{{ route('events.show', $event->id) }}">{{ $event->title }}</a></td>
-                            <td>0</td>
+                            <td>{{ count($event->users) }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <div class="p-1">
@@ -46,6 +46,37 @@
             </table>
         @else
             <p>Você ainda não possui eventos, <a href="{{ route('events.create') }}">Criar evento</a></p>
+        @endif
+    </div>
+    <div class="col-md-10 offset-md-1 dashboard-title-container">
+        <h1>Eventos que estou participando</h1>
+    </div>
+    <div class="col-md-10 offiset-md-1 dashboard-events-container m-auto">
+        @if (count($eventsAsParticipant) > 0)
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Participantes</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($eventsAsParticipant as $event)
+                        <tr>
+                            <td scope="row">{{ $loop->index + 1 }}</td>
+                            <td><a href="{{ route('events.show', $event->id) }}">{{ $event->title }}</a></td>
+                            <td>{{ count($event->users) }}</td>
+                            <td>
+                                <a href="">Sair do evento</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <p>Você ainda não esta participando de nenhum evento, <a href="/">Ver Eventos</a></p>
         @endif
     </div>
 

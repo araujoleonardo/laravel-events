@@ -104,9 +104,15 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $user = auth()->user();
 
-        return view('event.edit', compact('event'));
+        $event = Event::findOrFail($id);
+
+        if($user->id != $event->user_id) {
+            return redirect('events.dashboard');
+        }
+
+        return view('event.edit', ['event' => $event]);
     }
 
     /**
@@ -118,12 +124,17 @@ class EventController extends Controller
      */
     public function update(Request $request)
     {
-        $data = $request->all();
+        $event = Event::find($request->id);
 
+        $event->title = $request->title;
+        $event->date = $request->date;
+        $event->city = $request->city;
+        $event->private = $request->private;
+        $event->description = $request->description;
+        $event->items = $request->items;
 
-        // Image Upload
+        //Image upload
         if($request->hasFile('image') && $request->file('image')->isValid()) {
-
             $requestImage = $request->image;
 
             $extension = $requestImage->extension();
@@ -132,15 +143,12 @@ class EventController extends Controller
 
             $requestImage->move(public_path('img/events'), $imageName);
 
-            $data['image'] = $imageName;
-
+            $event->image = $imageName;
         }
 
-        $data['items'] = $request->items;
+        $event->update();
 
-        Event::findOrFail($request->id)->update($data);
-
-        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+        return redirect()->route('events.dashboard')->with('msg', 'Evento editado com sucesso!');
     }
 
     /**
@@ -167,6 +175,23 @@ class EventController extends Controller
         //Pega eventos do usuário logado
         $events = $user->events;
 
-        return view('event.dashboard', compact('events'));
+        $eventsAsParticipant = $user->eventsAsParticipant;
+
+        return view('event.dashboard', compact('events'), compact('eventsAsParticipant'));
     }
+
+    public function joinEvent($id) {
+
+        //Pega o usuário logado
+        $user = auth()->user();
+
+        //relaciona usuario com evento
+        $user->eventsAsParticipant()->attach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
+
+    }
+
 }

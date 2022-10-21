@@ -28,7 +28,13 @@ class Event extends Model
     //salvar alterações do update
     protected $guarded = [];
 
+    //Relação One To Many
     public function user() {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
+    }
+
+    //Relação Many To Many
+    public function users() {
+        return $this->belongsToMany('App\Models\User');
     }
 }

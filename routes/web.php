@@ -25,3 +25,6 @@ Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show'
 Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::get('/events/edit/{id}', [EventController::class, 'edit'])->name('events.edit')->middleware('auth');
 Route::put('/events/update/{id}', [EventController::class, 'update'])->name('events.update')->middleware('auth');
+
+//ROTA DE RELACIONAMENTO MANY TO MANY
+Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->name('event.user.join')->middleware('auth');
