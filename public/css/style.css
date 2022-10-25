@@ -23,6 +23,16 @@ header {
     padding: 10px;
 }
 
+#info-container .already-joined-msg {
+    margin: 15px 0;
+    color: dodgerblue;
+    background-color: #cce5ff;
+    border: 1px solid #cce5fe;
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px;
+}
+
 .row {
     margin: 0;
 }

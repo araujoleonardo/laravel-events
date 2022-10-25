@@ -28,3 +28,4 @@ Route::put('/events/update/{id}', [EventController::class, 'update'])->name('eve
 
 //ROTA DE RELACIONAMENTO MANY TO MANY
 Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->name('event.user.join')->middleware('auth');
+Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->name('event.user.leave')->middleware('auth');
